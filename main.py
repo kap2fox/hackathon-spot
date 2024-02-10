@@ -16,6 +16,13 @@ def main():
     os.system(cmd)
     print("Playing sound")
     os.system(f"ffplay -nodisp -autoexit -loglevel quiet {sample_name}")
+
+    # Capture image
+    import cv2
+    camera_capture = cv2.VideoCapture(0)
+    rv, image = camera_capture.read()
+    print(f"Image Dimensions: {image.shape}")
+    camera_capture.release()
   
     # Use wrapper in context manager to lease control, turn on E-Stop, power on robot and stand up at start
     # and to return lease + sit down at the end
